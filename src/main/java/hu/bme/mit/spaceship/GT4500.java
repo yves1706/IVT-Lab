@@ -80,7 +80,7 @@ public class GT4500 implements SpaceShip {
         // try to fire both of the torpedo stores
         //TODO implement feature
 
-        return true;
+        firingSuccess = true;
 
         break;
     }
