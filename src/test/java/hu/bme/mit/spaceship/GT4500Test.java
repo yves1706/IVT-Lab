@@ -19,17 +19,22 @@ public class GT4500Test {
     mockSecondaryTorpedoStore = mock(TorpedoStore.class);
 
     this.ship = new GT4500(mockPrimaryTorpedoStore, mockSecondaryTorpedoStore);
+
   }
 
   @Test
   public void fireTorpedo_Single_Success(){
     // Arrange
+    when(mockPrimaryTorpedoStore.fire(1)).thenReturn(true);
+    when(mockSecondaryTorpedoStore.fire(1)).thenReturn(false);
 
     // Act
-    boolean result = ship.fireTorpedo(FiringMode.SINGLE);
+    ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
-    assertEquals(true, result);
+    //assertEquals(true, result);
+    verify(mockPrimaryTorpedoStore, times(1)).fire(1);
+    verify(mockSecondaryTorpedoStore, times(0)).fire(1);
   }
 
   @Test
